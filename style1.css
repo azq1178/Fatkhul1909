@@ -1,0 +1,375 @@
+body {
+    background-image: url(''); /* Set background image */
+    background-size: cover; /* Cover the entire viewport */
+    background-attachment: fixed; /* Keep background fixed while scrolling */
+    background-color: #000000; /* Fallback color in case image doesn't load */
+    color: #00ff00;
+    font-family: 'Inconsolata', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+h1 {
+font-size: 3em;
+text-shadow: 0 0 10px #00ff00;
+margin-bottom: 20px;
+}
+p {
+font-size: 1.2em;
+color: #00aa00;
+}
+    .container {
+        background-color: #001a00;
+        border: 2px solid #00ff00;
+        border-radius: 15px; /* Rounded corners */
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        width: 90%;
+        max-width: 800px;
+        box-sizing: border-box; /* Include padding in width */
+    }
+
+    /* Confetti Button Styling */
+    .confetti-button-wrapper {
+        margin-bottom: 30px; /* Space between the button and the mode switch */
+    }
+
+    #confetti-button {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 2em;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    #confetti-button:hover {
+        transform: scale(1.2);
+    }
+
+    /* Mode Switch Styling */
+    .mode-switch {
+        text-align: center;
+        margin: 30px auto 40px; /* Adjusted margin for separation */
+        display: flex; /* Use flexbox for button alignment */
+        justify-content: center;
+        gap: 15px; /* Space between buttons */
+        width: 90%;
+        max-width: 800px;
+        flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    }
+
+    .mode-switch button {
+        padding: 10px 20px;
+        background-color: #003300; /* Darker green */
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        border-radius: 8px;
+        cursor: pointer;
+        font-family: 'Inconsolata', monospace;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+    }
+
+    .mode-switch button:hover {
+        background-color: #005500;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    }
+
+    .mode-switch button.active {
+        background-color: #00ff00;
+        color: #000000;
+        box-shadow: 0 0 20px #00ff00;
+    }
+
+    /* Content Sections */
+    .content-section {
+        display: none; /* Hidden by default */
+        width: 100%;
+        max-width: 800px;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; /* For content to stack */
+    }
+
+    /* Original Terminal Box Styling for Text Content */
+    .terminal-box {
+        background-color: #001a00;
+        border: 1px solid #00ff00;
+        padding: 20px;
+        margin-top: 30px; /* Adjust margin if needed, but keeping it inside .content-section */
+        text-align: left;
+        overflow: hidden; /* Ensures text doesn't overflow during typing animation */
+        white-space: pre-wrap; /* Preserve whitespace and wrap text */
+        font-size: 1.1em;
+        position: relative;
+        box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3); /* Added for consistency */
+        border-radius: 10px; /* Added for consistency */
+        width: 100%; /* Ensure it takes full width of content-section */
+        box-sizing: border-box;
+    }
+    .typed-text {
+        color: #00ff00;
+        display: inline-block; /* Allows cursor to be next to text */
+    }
+    .cursor {
+    display: none; /* This will completely hide the cursor element */
+    /* You could also set width: 0; background-color: transparent; and remove animation */
+}
+
+
+    /* container styling (now inside .content-section) */
+    .video-container {
+        background-color: #001a00;
+        border: 2px solid #00ff00;
+        border-radius: 15px; /* Rounded corners */
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        width: 90%;
+        max-width: 800px;
+        display: flex; /* Ensure flexbox for videos to stack */
+        flex-direction: column;
+        gap: 20px; /* Space between videos */
+        box-sizing: border-box;
+        margin-bottom: 20px; /* Add margin to separate video containers if needed */
+    }
+
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 125%; /* 4:5 aspect ratio (height is 5/4 of width) */
+        background-color: #000; /* Fallback for black background */
+    }
+
+    .video-wrapper video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Ensure video fits within the aspect ratio */
+        border-radius: 10px; /* Slightly rounded video corners */
+    }
+
+    /* Photo gallery styling */.photo-gallery {
+    background-color: #001a00;
+    border: 2px solid #00ff00;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    width: 90%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.photo-item {
+    width: 100%;
+    /* Remove padding-bottom to allow natural height */
+    /* padding-bottom: 100%; */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #00ff00;
+    /* Add display: flex and align-items for centering if images are smaller than the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-item img {
+    position: static; /* No longer absolutely positioned */
+    top: auto;
+    left: auto;
+    width: 100%; /* Ensure image fills the width of its container */
+    height: auto; /* Allow height to adjust naturally based on aspect ratio */
+    object-fit: contain; /* Ensures the entire image is visible, scaling down if necessary */
+    display: block;
+    max-width: 100%; /* Important to prevent overflow */
+    max-height: 100%; /* Important for height containment */
+}
+
+
+
+    /* Audio section styling */
+    .audio-section {
+        background-color: #001a00;
+        border: 2px solid #00ff00;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        width: 90%;
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+
+    .audio-player-button {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center content horizontally */
+        gap: 15px; /* Space between icon and text */
+        width: 100%;
+        padding: 15px 25px;
+        background-color: #003300;
+        color: #00ff00;
+        border: 1px solid #00ff00;
+        border-radius: 10px;
+        cursor: pointer;
+        font-family: 'Inconsolata', monospace;
+        font-size: 1.2em;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+        text-align: center;
+        position: relative; /* Needed for absolute positioning of audio tag */
+        overflow: hidden; /* Hide default audio controls */
+    }
+
+    .audio-player-button:hover {
+        background-color: #005500;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.6);
+    }
+
+    .audio-player-button .icon {
+        font-size: 1.5em; /* Larger icon */
+    }
+
+    .audio-player-button audio {
+        position: absolute; /* Hide the default audio element */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0; /* Make it completely invisible */
+        pointer-events: none; /* Do not block clicks */
+    }
+
+    /* Hide the default audio controls when the button is clicked */
+    .audio-player-button.playing audio {
+        opacity: 1; /* Make it visible if needed for debugging */
+        pointer-events: auto; /* Allow interaction */
+        position: static; /* Take up space */
+        width: 100%; /* Take full width of the button */
+        height: auto;
+        filter: invert(1) hue-rotate(180deg) brightness(1.5) saturate(1.5);
+    }
+
+
+    .footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #; /* Light gray background for the footer */
+    color: #00ff00; /* Dark gray text color */
+    font-family: Inconsolata, sans-serif;
+    border-top: 1px solid #; /* Subtle top border */
+}
+
+.footer p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #00ff00;
+}
+
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between icons */
+}
+
+.social-links a {
+    display: inline-block;
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.social-links a:hover {
+    transform: translateY(-5px); /* Slightly lift icons on hover */
+}
+
+.social-links img {
+    width: 40px; /* Adjust icon size as needed */
+    height: 40px;
+    border-radius: 50%; /* Makes the icons circular if your images support it */
+    box-shadow: 0 2px 5px rgba(0,255,0,0.6); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease;
+}
+
+.social-links img:hover {
+    box-shadow: 0 4px 10px rgba(0,255,0,0.6); /* Enhanced shadow on hover */
+}
+
+
+    @keyframes blink-caret {
+        from, to { background-color: transparent }
+        50% { background-color: #00ff00; }
+    }
+
+    /* Confetti animation */
+    .confetti {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background-color: red; /* Default color */
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        opacity: 0; /* Initially hidden */
+        transform: translate(-50%, -50%); /* Center origin */
+    }
+
+    @keyframes confetti-explosion {
+        0% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+        100% {
+            opacity: 0;
+            transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(1.5);
+        }
+    }
+
+
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 2em;
+        }
+        .terminal-box, .typing-text { /* Adjusted for the new text box */
+            font-size: 1em;
+        }
+        p {
+            font-size: 1em;
+        }
+        .mode-switch {
+            flex-direction: column; /* Stack buttons on small screens */
+            gap: 10px;
+        }
+        #confetti-button {
+            font-size: 2em;
+        }
+        .audio-player-button {
+            padding: 10px 15px;
+            font-size: 1em;
+        }
+        .audio-player-button .icon {
+            font-size: 1.2em;
+        }
+    }
